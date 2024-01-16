@@ -1,0 +1,29 @@
+package com.myweb.www.config;
+
+import org.springframework.beans.propertyeditors.ClassArrayEditor;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+public class Webconfig extends AbstractAnnotationConfigDispatcherServletInitializer{
+
+	@Override
+	// 루트 설정 클래스를 지정하여 애플리케이션 설정을 담당
+	protected Class<?>[] getRootConfigClasses() {
+		return new Class[] {RootConfig.class};
+	}
+
+	@Override
+	// 서블릿 설정 클래스를 지정하여 웹 계층에 대한 설정을 담당
+	protected Class<?>[] getServletConfigClasses() {
+		return new Class[] {ServletConfiguration.class};
+	}
+
+	@Override
+	protected String[] getServletMappings() {
+		// 처음 열렸을때 기본 경로
+		// index.jsp
+		return new String[] {"/"};
+	}
+
+	
+	
+}

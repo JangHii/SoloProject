@@ -1,0 +1,20 @@
+package com.myweb.www.config;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+
+public class RootConfig {
+
+	// DB 설정 부분
+	// hikaiCP 사용 
+	// log4jdbc-log4j2 사용
+	
+	@Autowired
+	// Bean을 사용할수있게 한다.
+	ApplicationContext applicationContext;
+	
+	public DataSource dataSource() {
+		
+	}
+	
+}

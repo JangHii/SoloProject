@@ -1,0 +1,31 @@
+package com.myweb.www.config;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+
+import com.zaxxer.hikari.HikariConfig;
+
+public class RootConfig {
+
+	// DB 설정 부분
+	// hikaiCP 사용 
+	// log4jdbc-log4j2 사용
+	
+	@Autowired
+	// Bean을 사용할수있게 한다.
+	ApplicationContext applicationContext;
+	
+	public DataSource dataSource() { // javax.spl (import)
+		
+		// JAVA와 DB간의 연결을 향상시킬수있는 (HikariCP)
+		HikariConfig hikariConfig = new HikariConfig();
+		
+		// 기본설정
+		// log4jdbc-log4j2
+		hikariConfig.setDriverClassName("net.sf.log4jdbc.spq.jdbcapi.Driverspy");
+		
+	}
+	
+}
