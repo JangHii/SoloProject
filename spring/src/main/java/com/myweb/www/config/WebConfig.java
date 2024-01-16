@@ -1,13 +1,11 @@
 package com.myweb.www.config;
 
 import javax.servlet.Filter;
-import javax.servlet.ServletRegistration.Dynamic;
 
-import org.springframework.beans.propertyeditors.ClassArrayEditor;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class Webconfig extends AbstractAnnotationConfigDispatcherServletInitializer{
+public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitializer{
 
 	@Override
 	// 루트 설정 클래스를 반환하는 메서드로, 애플리케이션 전반의 설정을 담당
@@ -38,12 +36,12 @@ public class Webconfig extends AbstractAnnotationConfigDispatcherServletInitiali
 		return new Filter[] {encoding}; 
 	}
 
-	@Override
-	protected void customizeRegistration(Dynamic registration) {
-		// 그외기타 사용자 설정
-		// 사용자 지정 익셉션 처리 지정
-		super.customizeRegistration(registration);
-	}
+//	@Override
+//	protected void customizeRegistration(Dynamic registration) {
+//		// 그외기타 사용자 설정
+//		// 사용자 지정 익셉션 처리 지정
+//		super.customizeRegistration(registration);
+//	}
 
 	
 	

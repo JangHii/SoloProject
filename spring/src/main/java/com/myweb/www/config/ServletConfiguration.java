@@ -9,7 +9,6 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc
-
 //배열로도 가능, 전체 스캔: basePackages = "com.myweb.www"
 @ComponentScan(basePackages = {"com.myweb.www.controller", "com.myweb.www.handler"}) 
 public class ServletConfiguration implements WebMvcConfigurer{
@@ -18,7 +17,7 @@ public class ServletConfiguration implements WebMvcConfigurer{
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		// resources 경로 설정 / 나중에 파일 업로드 경로 설정 추가
 		registry.addResourceHandler("/resources/**") // 들어오는 경로
-				.addResourceLocations("/resources"); // 찾는 경로
+				.addResourceLocations("/resources/"); // 찾는 경로
 	}
 
 	@Override

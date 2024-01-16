@@ -11,7 +11,6 @@ import lombok.ToString;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class BoardVO {
 
 	private long bno;

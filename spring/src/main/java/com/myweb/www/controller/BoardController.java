@@ -23,7 +23,7 @@ public class BoardController {
 	@GetMapping("/register")
 	public void register() {}
 	
-	@PostMapping("register")
+	@PostMapping("/register")
 	public String register(BoardVO bvo) {
 		log.info(">>>>> bvo 들어가있는지 확인하자 >>>>> {} " , bvo);
 		
