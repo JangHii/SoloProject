@@ -1,7 +1,0 @@
-package com.myweb.www.service;
-
-public class BoardServiceImpl {
-
-	private final BoardDAO bdao;
-	
-}
