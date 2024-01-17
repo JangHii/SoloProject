@@ -51,7 +51,7 @@ public class BoardController {
 	@GetMapping({"/detail" , "/modify"})
 	public void detail(Model m , @RequestParam("bno") int bno) {
 		log.info(">>>>> bno 들어온지 확인하자 >>>>> {}" , bno);
-		m.addAttribute("bno" , bsv.getdetail(bno));
+		m.addAttribute("bvo" , bsv.getdetail(bno));
 	}
 	
 	
@@ -59,8 +59,8 @@ public class BoardController {
 	public String modify(BoardVO bvo , Model m) {
 		log.info(">>>>> bvo 들어온지 확인하자 >>>>> {} " , bvo);
 		bsv.modify(bvo);
-		m.addAttribute("bno",bvo.getBno());
-		return "redirect:/board/detail";
+		m.addAttribute("bvo",bvo.getBno());
+		return "index";
 	}
 	
 	

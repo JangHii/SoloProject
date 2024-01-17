@@ -10,8 +10,6 @@
 <h2>수정페이지</h2>
 <br>
 
-<c:set value="${bno }" var="bvo"></c:set>
-
 
 <div class="mb-3">
   <label for="bno" class="form-label">번호</label>
