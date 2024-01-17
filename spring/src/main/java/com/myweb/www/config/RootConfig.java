@@ -81,8 +81,8 @@ public class RootConfig {
 	
 	// 트렌젝션 매니저 빈 설정
 	@Bean
-	public DataSourceTransactionManager teansactionManager() {
-		return new DataSourceTransactionManager(dataSource());
+	public DataSourceTransactionManager transactionManager() {
+	    return new DataSourceTransactionManager(dataSource());
 	}
 	
 	
