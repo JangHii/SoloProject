@@ -1,5 +1,7 @@
 package com.myweb.www.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.myweb.www.domain.BoardVO;
@@ -17,7 +19,33 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public void register(BoardVO bvo) {
+		log.info(" >>>>> bvo 들어오는지 확인하자 >>>>> {}" , bvo);
 		bdao.register(bvo);
+	}
+
+	@Override
+	public List<BoardVO> getList() {
+		return bdao.selectList();
+	}
+
+	@Override
+	public BoardVO getdetail(int bno) {
+		log.info(" >>>>> bno 들어오는지 확인하자 >>>>> {}" , bno);
+		bdao.updateCount(bno);
+		return bdao.detail(bno);
+	}
+
+	@Override
+	public void modify(BoardVO bvo) {
+		log.info(" >>>>> bvo 들어오는지 확인하자 >>>>> {}" , bvo);
+		bdao.modify(bvo);
+	}
+
+	@Override
+	public int delete(int bno) {
+		log.info(" >>>>> bno 들어오는지 확인하자 >>>>> {}" , bno);
+		int isOk = bdao.delete(bno);
+		return isOk;
 	}
 	
 }

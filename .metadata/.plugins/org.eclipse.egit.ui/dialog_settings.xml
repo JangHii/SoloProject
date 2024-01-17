@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item key="org.eclipse.egit.ui.internal.clone.GitSelectWizardPageWizardSel" value="0"/>
-	<item key="GitSelectRepositoryPage.lastRepository" value="D:\SoloProject\.git"/>
+	<item key="org.eclipse.egit.ui.internal.clone.GitSelectWizardPageWizardSel" value="1"/>
+	<item key="GitSelectRepositoryPage.lastRepository" value="D:\jang hi\SoloProject\.git"/>
 	<list key="RepositorySelectionPage.UsedUris">
 		<item value="https://github.com/JangHii/SoloProject.git"/>
 		<item value="https://github.com/JangHii/Home.git"/>

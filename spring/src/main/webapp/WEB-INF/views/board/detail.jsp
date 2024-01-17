@@ -1,0 +1,50 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	    pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<jsp:include page="../layout/header.jsp"></jsp:include>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+<div class="container-md">
+<c:set value="${bno }" var="bvo" ></c:set>
+
+	<br>
+	<h2>상세페이지</h2>
+	<br>
+	<div class="mb-3">
+		<label for="bno" class="form-label">번호</label> <input type="text"
+			name="bno" class="form-control" id="bno" value="${bvo.bno }"
+			readonly="readonly">
+	</div>
+	<div class="mb-3">
+		<label for="title" class="form-label">제목</label> <input type="text"
+			name="title" class="form-control" id="title" placeholder="title"
+			value="${bvo.title }">
+	</div>
+	<div class="mb-3">
+		<label for="writer" class="form-label">작성자</label> <input
+			type="text" name="writer" class="form-control" id="writer"
+			value="${bvo.writer }" readonly="readonly">
+	</div>
+	<div class="mb-3">
+		<label for="regAt" class="form-label">작성일</label> <input
+			type="text" name="regAt" class="form-control" id="regAt"
+			value="${bvo.regAt }" readonly="readonly"> <span
+			class="badge bg-secondary">${bvo.readCount}</span>
+	</div>
+	<div class="mb-3">
+		<label for="content" class="form-label">내용</label>
+		<textarea class="form-control" name="content" id="content" rows="3">${bvo.content }</textarea>
+	</div>
+	
+	<div class="position-relative">
+	<div class="position-absolute bottom-0 end-0">
+		<a href="/board/modify?bno=${bvo.bno }"><button type="button" class="btn btn-primary">게시글수정</button></a> 
+		<a href="/board/list"><button type="button" class="btn btn-secondary">리스트로..</button></a>
+	</div>
+	</div>
+	<br>
+
+</div>
+
+<jsp:include page="../layout/footer.jsp"></jsp:include>

@@ -1,6 +1,7 @@
 package com.myweb.www.config;
 
 import javax.servlet.Filter;
+import javax.servlet.Registration;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -38,6 +39,7 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 
 //	@Override
 //	protected void customizeRegistration(Dynamic registration) {
+//		registration.setInitParameter("throwExceptionIfNoHandlerFound, "true");
 //		// 그외기타 사용자 설정
 //		// 사용자 지정 익셉션 처리 지정
 //		super.customizeRegistration(registration);

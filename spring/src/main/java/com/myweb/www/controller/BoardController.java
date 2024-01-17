@@ -1,9 +1,13 @@
 package com.myweb.www.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.myweb.www.domain.BoardVO;
 import com.myweb.www.service.BoardService;
@@ -20,15 +24,49 @@ public class BoardController {
 
 	private final BoardService bsv;
 	
+	// 조회할때만 사용
+	// URL에 데이터가 노출됨
 	@GetMapping("/register")
 	public void register() {}
 	
+	
+	// 데이터를 저장할때 사용
+	// URL의 데이터가 노출되지않음
 	@PostMapping("/register")
 	public String register(BoardVO bvo) {
-		log.info(">>>>> bvo 들어가있는지 확인하자 >>>>> {} " , bvo);
-		
+		log.info(">>>>> bvo 들어온지 확인하자 >>>>> {} " , bvo);
 		bsv.register(bvo);
-		
+		return "index";
+	}
+	
+	
+	@GetMapping("/list")
+	public void list (BoardVO bvo , Model m) {
+		log.info(">>>>> bvo 들어온지 확인하자 >>>>> {}" , bvo);
+		List<BoardVO> list = bsv.getList();
+		m.addAttribute("list", list);
+	}
+	
+	
+	@GetMapping({"/detail" , "/modify"})
+	public void detail(Model m , @RequestParam("bno") int bno) {
+		log.info(">>>>> bno 들어온지 확인하자 >>>>> {}" , bno);
+		m.addAttribute("bno" , bsv.getdetail(bno));
+	}
+	
+	
+	@PostMapping("/modify")
+	public String modify(BoardVO bvo , Model m) {
+		log.info(">>>>> bvo 들어온지 확인하자 >>>>> {} " , bvo);
+		bsv.modify(bvo);
+		m.addAttribute("bno",bvo.getBno());
+		return "redirect:/board/detail";
+	}
+	
+	
+	@GetMapping("/delete")
+	public String delete(@RequestParam("bno") int bno) {
+		int isOk = bsv.delete(bno);
 		return "index";
 	}
 	

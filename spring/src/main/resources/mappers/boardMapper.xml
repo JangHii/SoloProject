@@ -9,7 +9,33 @@
   		VALUES (#{title} , #{writer} , #{content})
 	</insert>
 
+	<select id="selectList" resultType="com.myweb.www.domain.BoardVO">
+		SELECT * FROM board
+	</select>
+	
+	<select id="detail" resultType="com.myweb.www.domain.BoardVO">
+		SELECT * FROM board
+		WHERE bno=#{bno}
+	</select>
+	
+	<update id="updateCount">
+		UPDATE board
+		SET read_count = read_count +1
+		WHERE bno=#{bno}
+	</update>
 
-
+	<update id="modify">
+		UPDATE board
+		SET title=#{title},
+		content=#{content},
+		mod_at=now(),
+		read_count=read_count-2
+		WHERE bno=#{bno}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM board  
+		WHERE bno=#{bno}
+	</delete>
 
 </mapper>
