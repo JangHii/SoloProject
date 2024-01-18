@@ -1,13 +1,13 @@
 ===== 2024-01-14 =====
 
--- root °èÁ¤À¸·Î DB »ý¼º, User »ý¼º
--- db »ý¼º ±¸¹®
+-- root ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ DB ï¿½ï¿½ï¿½ï¿½, User ï¿½ï¿½ï¿½ï¿½
+-- db ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 create database mywebdb;
--- user »ý¼º ±¸¹®
+-- user ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 create user 'mywebUser'@'localhost' identified by 'mysql';
--- user ±ÇÇÑ ºÎ¿©
+-- user ï¿½ï¿½ï¿½ï¿½ ï¿½Î¿ï¿½
 grant all privileges on mywebdb.* to 'mywebUser'@'localhost' with grant option;
--- ±ÇÇÑ ¼³Á¤ ¿Ï·á
+-- ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½
 flush privileges;
 
 
@@ -25,3 +25,13 @@ has_file INT DEFAULT 0,
 PRIMARY KEY (bno));
 
 
+
+===== 2024-01-18 =====
+CREATE TABLE comment (
+cno BIGINT auto_increment,
+bno BIGINT NOT NULL,
+writer VARCHAR(100) NOT NULL,
+content TEXT NOT NULL,
+reg_at DATETIME DEFAULT now(),
+mod_at DATETIME DEFAULT now(),
+PRIMARY KEY(cno));

@@ -1,42 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-    
+
 <jsp:include page="../layout/header.jsp"></jsp:include>
-    <!-- 검색라인 -->
-<div>
-	<form action="/board/list" method="get">
-	<div  class="input-group" >
-		<select name="type" class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon" >
-			<option ${ph.pgvo.type eq null ?  'selected' : ''} >검색종류선택</option>
-			<option value="t" ${ph.pgvo.type == 't' ?  'selected' : ''}>제목</option>
-			<option value="w" ${ph.pgvo.type eq 'w' ?  'selected' : ''}>작성자</option>
-			<option value="c" ${ph.pgvo.type == 'c' ?  'selected' : ''}>내용</option>
-			<option value="tw" ${ph.pgvo.type eq 'tw' ?  'selected' : ''}>제목 + 작성자</option>
-			<option value="tc" ${ph.pgvo.type == 'tc' ?  'selected' : ''}>제목 + 내용</option>
-			<option value="wc" ${ph.pgvo.type eq 'wc' ?  'selected' : ''}>작성자 + 내용</option>
-			<option value="twc" ${ph.pgvo.type == 'twc' ?  'selected' : ''}>제목 + 작성자 + 내용</option>
-		</select>
-		<input class="form-control me-2" type="search" placeholder="검색단어입력..." 
-		aria-label="Search" name="keyword" style="width: 50%" value="${ph.pgvo.keyword }">
-		
-		<input type="hidden" name="pageNo" value="1">
-		<input type="hidden" name="qty" value="10">
-		
-		<button type="submit" class="btn btn-primary position-relative">검색
-  		<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-    ${ph.totalCount}
-    <span class="visually-hidden">unread messages</span>
-  </span>
-</button>
-	</div>
-	</form>
-</div>
-    
-    
-    
-    <table class="table">
+<div class="container-md">
+
+<h1>자유게시판</h1>
+<br>
+<br>
+
+<table class="table">
 	<thead>
 		<tr>
 			<th scope="col">글번호</th>
@@ -49,8 +23,8 @@
 		</tr>
 	</thead>
 	<tbody>
-	<!-- items : BoardController에 있는 List<> 변수명을 적어줘야한다 -->
-	<!-- var : items안에 있는 list를 var안에 하나씩 넣어준다 -->
+		<!-- items : BoardController에 있는 List<> 변수명을 적어줘야한다 -->
+		<!-- var : items안에 있는 list를 var안에 하나씩 넣어준다 -->
 		<c:forEach items="${list }" var="bvo">
 			<tr>
 				<th scope="row">${bvo.bno }</th>
@@ -65,6 +39,8 @@
 		</c:forEach>
 	</tbody>
 </table>
+
+<br>
 
 <!-- 페이징 라인 -->
 
@@ -81,8 +57,9 @@
 
 		<!-- 페이지번호 -->
 		<c:forEach begin="${ph.startPage}" end="${ph.endPage }" var="i">
-			<li class="page-item ${ph.pgvo.pageNo == i ? 'active' : '' }">
-			<a class="page-link"  href="/board/list?pageNo=${i}&qty=${ph.pgvo.qty}&keyword=${ph.pgvo.keyword}">${i}</a></li>
+			<li class="page-item ${ph.pgvo.pageNo == i ? 'active' : '' }"><a
+				class="page-link"
+				href="/board/list?pageNo=${i}&qty=${ph.pgvo.qty}&keyword=${ph.pgvo.keyword}">${i}</a></li>
 		</c:forEach>
 
 
@@ -99,6 +76,38 @@
 		</li>
 	</ul>
 </nav>
-    
 
+
+
+<!-- 검색라인 -->
+
+
+	<br>
+	<div class="col-sm-12 col-md-6">
+		<form action="/board/list" method="get">
+			<div class="input-group mb-3">
+				<c:set value="${ph.pgvo.type }" var="typed"></c:set>
+				<select class="form-select" name="type" id="inputGroupSelect01">
+					<option ${typed eq null ? 'selected' : '' }>선택</option>
+					<option value ="t" ${typed eq 't' ? 'selected' : '' }>제목</option>
+					<option value ="c" ${typed eq 'c' ? 'selected' : '' }>내용</option>
+					<option value ="w" ${typed eq 'w' ? 'selected' : '' }>작성자</option>
+					<option value ="wc" ${typed eq 'wc' ? 'selected' : '' }>제목+내용</option>
+					<option value ="twc" ${typed eq 'twc' ? 'selected' : '' }>전체</option>
+				</select>
+				<input type="hidden" name="pageNo" value="1">
+				<input type="hidden" name="qty" value="${ph.pgvo.qty }">
+				<input type="search" name="keyword" value="${ph.pgvo.keyword }"
+					class="form-control me-2"  placeholder="검색">
+				<button type="submit" class="btn btn-outline-success">검색
+					<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+						${ph.totalCount }
+						<span class="visually-hidden">unread messages</span>
+					</span>
+				</button> 
+			</div>
+		</form>
+	</div>
+
+</div>
 <jsp:include page="../layout/footer.jsp"></jsp:include>
