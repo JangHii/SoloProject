@@ -50,7 +50,7 @@ public class BoardController {
 		List<BoardVO> list = bsv.getList(pgvo);
 		
 		//totalCount 구하기
-		int totalCount = bsv.gettotalCount();
+		int totalCount = bsv.gettotalCount(pgvo);
 		PagingHandler ph = new PagingHandler(pgvo, totalCount);
 		
 		m.addAttribute("list", list);

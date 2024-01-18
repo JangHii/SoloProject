@@ -11,13 +11,14 @@
 
 	<select id="selectList" resultType="com.myweb.www.domain.BoardVO">
 		SELECT * FROM board
+		<include refid="search"></include>
 		ORDER BY bno DESC
 		LIMIT #{pageStart} , #{qty}
 	</select>
 	
 	<select id="totalCount" resultType="int">
-		SELECT COUNT(bno)
-		FROM board
+		SELECT COUNT(bno) FROM board
+		<!-- <include refid="search"></include> -->
 	</select>
 	
 	<select id="detail" resultType="com.myweb.www.domain.BoardVO">
@@ -44,5 +45,31 @@
 		DELETE FROM board  
 		WHERE bno=#{bno}
 	</delete>
+	
+	
+	<sql id="search">
+		<if test="type != null">
+			<trim prefix="WHERE (" suffix=")" prefixOverrides="or">
+				<foreach collection="typetoArray" item="type">
+					<trim prefix="or">
+						<choose>
+							<when test="type == 't'.toString()">
+								title like concat('%',#{keyword}, '%')
+							</when>
+							<when test="type == 'w'.toString()">
+								writer like concat('%', #{keyword}, '%')
+							</when>
+							<when test="type == 'c'.toString()">
+								content like concat('%', #{keyword}, '%')
+							</when>
+						</choose>
+					</trim>
+				</foreach>
+			</trim>
+		</if>
+	</sql>
+	
+	
+	
 
 </mapper>

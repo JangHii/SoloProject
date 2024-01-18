@@ -19,7 +19,7 @@ public interface BoardDAO {
 
 	int delete(int bno);
 
-	int totalCount();
+	int totalCount(PagingVO pgvo);
 
 
 
