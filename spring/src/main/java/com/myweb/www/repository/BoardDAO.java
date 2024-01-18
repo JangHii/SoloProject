@@ -18,7 +18,6 @@ public interface BoardDAO {
 
 	int delete(int bno);
 
-	void insert(BoardVO bvo); // 게시글300개 테스트를 위한 구문 
 
 
 }

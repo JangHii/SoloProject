@@ -32,7 +32,8 @@ public class BoardTest {
 		bvo.setWriter("테스트의 작성자" + i);
 		bvo.setContent("테스트의 내용" + i);
 		
-		bdao.insert(bvo);
+		// 글쓰기 bdao를 그대로 가져와야한다
+		bdao.register(bvo);
 		}
 	}
 	
