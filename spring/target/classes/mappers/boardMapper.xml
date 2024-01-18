@@ -11,6 +11,13 @@
 
 	<select id="selectList" resultType="com.myweb.www.domain.BoardVO">
 		SELECT * FROM board
+		ORDER BY bno DESC
+		LIMIT #{pageStart} , #{qty}
+	</select>
+	
+	<select id="totalCount" resultType="int">
+		SELECT COUNT(bno)
+		FROM board
 	</select>
 	
 	<select id="detail" resultType="com.myweb.www.domain.BoardVO">

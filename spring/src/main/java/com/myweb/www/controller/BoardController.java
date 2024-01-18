@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.myweb.www.domain.BoardVO;
+import com.myweb.www.domain.PagingVO;
+import com.myweb.www.handler.PagingHandler;
 import com.myweb.www.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
@@ -41,10 +43,18 @@ public class BoardController {
 	
 	
 	@GetMapping("/list")
-	public void list (BoardVO bvo , Model m) {
-		log.info(">>>>> bvo 들어온지 확인하자 >>>>> {}" , bvo);
-		List<BoardVO> list = bsv.getList();
+	public void list (Model m , PagingVO pgvo) {
+		log.info(">>>>> pgvo 들어온지 확인하자 >>>>> {}" , pgvo);
+		
+		//페이징처리
+		List<BoardVO> list = bsv.getList(pgvo);
+		
+		//totalCount 구하기
+		int totalCount = bsv.gettotalCount();
+		PagingHandler ph = new PagingHandler(pgvo, totalCount);
+		
 		m.addAttribute("list", list);
+		m.addAttribute("ph", ph);
 	}
 	
 	

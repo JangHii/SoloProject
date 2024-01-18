@@ -19,7 +19,7 @@ public class PagingHandler {
 	private PagingVO pgvo; //매개변수로 전달
 	
 	// 생성자에서 모든 값들이 설정되어야함
-	public PagingHandler(PagingVO pvo , int totalCount) {
+	public PagingHandler(PagingVO pgvo , int totalCount) {
 		this.pgvo = pgvo;
 		this.totalCount = totalCount;
 		

@@ -17,9 +17,9 @@ public class PagingVO {
 		this.qty = 10;
 	}
 	
-	public PagingVO(int pageNO , int qwy) {
-		this.pageNo = pageNO;
-		this.qty = qwy;
+	public PagingVO(int pageNo , int qty) {
+		this.pageNo = pageNo;
+		this.qty = qty;
 	}
 	
 	// 시작 번지 구하기
