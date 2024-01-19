@@ -83,6 +83,7 @@
 
 
 	<br>
+	<div class="d-flex justify-content-center">
 	<div class="col-sm-12 col-md-6">
 		<form action="/board/list" method="get">
 			<div class="input-group mb-3">
@@ -107,6 +108,7 @@
 				</button> 
 			</div>
 		</form>
+	</div>
 	</div>
 
 </div>

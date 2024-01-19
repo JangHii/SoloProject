@@ -44,7 +44,33 @@
 	</div>
 	</div>
 	<br>
+	
+	<!-- 댓글 등록 라인 -->
+	<div class="input-group mb-3">
+		<span class="input-group-text" id="cmtWriter">Writer</span> 
+		<input type="text" class="form-control" id="cmtText" aria-label="Amount (to the nearest dollar)">
+		<button type="button" class="btn btn-success" id="cmtPostBtn">등록</button>
+	</div>
 
+	<!-- 댓글 표시 라인 -->
+	<ul class="list-group list-group-flush" id="cmtListArea">
+		<li class="list-group-item">
+			<div class="mb-3">
+				<div class="fw-bold">Writer <span class="badge rounded-pill text-bg-warning">modAt</span></div>
+				content
+			</div>
+		</li>
+	</ul>
+	
+	
 </div>
+<script src="/resources/js/boardComment.js"></script>
+<script>
+	let bnoVal = `<c:out value="${bvo.bno}"/>`;
+</script>
+
+<script>
+	spreadCommentList(bnoVal);
+</script>
 
 <jsp:include page="../layout/footer.jsp"></jsp:include>
