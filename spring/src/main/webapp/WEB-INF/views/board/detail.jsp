@@ -68,6 +68,26 @@
 			    class="btn btn-outline-dark" style="visibility: hidden;">댓글 더보기</button>
 	</div>
 	
+	<!-- 모달창 라인 -->
+	<div>
+			<div class="modal" id="myModal" tabindex="-1">
+  		<div class="modal-dialog">
+    		<div class="modal-content">
+      			<div class="modal-header">
+        			<h5 class="modal-title">Writer</h5>
+        			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      			</div>
+      			<div class="modal-body">
+        			<div class="input-group mb-3">
+        				<input type="text" class="form-control" id="cmtModText">
+        				<button type="button" class="btn btn-primary" id="cmtModBtn">수정완료</button>
+        			</div>
+      			</div>
+    		</div>
+  		</div>
+			</div>
+	</div>
+	
 	
 </div>
 <script src="/resources/js/boardComment.js"></script>

@@ -78,8 +78,8 @@ function spreadCommentList(bno , page=1){
                 li += `<span class="badge rounded-pill text-bg-warning">${cvo.modAt}</span></div>`;
                 li += `${cvo.content}`;
                 li += `</div>`;
-                li += `<button type="button" class="btn btn-sm btn-outline-success cmtModBtn" data-bs-toggle="modal" data-bs-target="#myModal">Eidt</button>`;
-                li += `<button type="button" class="btn btn-sm btn-outline-danger cmtDelBtn">Delete</button>`;
+                li += `<button type="button" class="btn btn-sm btn-outline-success cmtModBtn" data-bs-toggle="modal" data-bs-target="#myModal">수정</button>`;
+                li += `<button type="button" class="btn btn-sm btn-outline-danger cmtDelBtn">삭제</button>`;
                 li += `</li>`;
                 ul.innerHTML += li;
             }
@@ -109,5 +109,75 @@ document.addEventListener('click',(e)=>{
     if(e.target.id == 'moreBtn'){
         let page = parseInt(e.target.dataset.page);
         spreadCommentList(bnoVal , page)
+    }else if(e.target.classList.contains('cmtModBtn')){
+        let li = e.target.closest('li');
+        let cmtText = li.querySelector('.fw-bold').nextSibling;
+
+        document.getElementById('cmtModText').value = cmtText.nodeValue;
+        document.getElementById('cmtModBtn').setAttribute('data-cno' , li.dataset.cno);
+        document.getElementById('cmtModBtn').setAttribute('data-writer' , li.dataset.writer);
+    }else if(e.target.id == 'cmtModBtn'){
+        let cmtModData ={
+            cno : e.target.dataset.cno,
+            writer : e.target.dataset.writer,
+            content : document.getElementById('cmtModText').value
+        };
+        editCommrntToServer(cmtModData).then(result =>{
+            if(result == '1'){
+                alert('댓글 수정 성공');
+                document.querySelector('.btn-close').click();
+            }else{
+                alert('댓글 수정 성공');
+                document.querySelector('.btn-close').click();
+            }
+            spreadCommentList(bnoVal);
+        })
+    }else if(e.target.classList.contains('cmtDelBtn')){
+        let li = e.target.closest('li');
+        let cnoVal = li.dataset.cno;
+        console.log(cnoVal);
+
+        removeCommentFromServer(cnoVal).then(result =>{
+            if(result == '1'){
+                alert('댓글삭제 성공');
+                spreadCommentList(bnoVal);
+            }
+        });
     }
 });
+
+
+async function editCommrntToServer(cmtModData){
+    try{
+
+        const url = "/comment/edit";
+        const config = {
+            method : 'put',
+            headers : {
+                'content-type' : 'application/json; charset=utf-8' 
+            },
+            body : JSON.stringify(cmtModData)
+        };
+            const resp = await fetch(url , config);
+            const result = await resp.text();
+            return result;
+    }catch(error){
+        console.log(error);
+    }
+};
+
+
+async function removeCommentFromServer(cno){
+    try{
+
+        const url = '/comment/remove/'+cno;
+        const config = {
+            method : 'delete'
+        };
+            const resp = await fetch(url , config);
+            const result = await resp.text();
+            return result;
+    }catch(error){
+        console.log(error);
+    }
+};

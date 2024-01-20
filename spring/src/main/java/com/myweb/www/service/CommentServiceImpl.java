@@ -31,5 +31,15 @@ public class CommentServiceImpl implements CommentService{
 		PagingHandler ph = new PagingHandler(pgvo, cmtCount, list);
 		return ph;
 	}
+
+	@Override
+	public int edit(CommentVO cvo) {
+		return cdao.update(cvo);
+	}
+
+	@Override
+	public int remove(long cno) {
+		return cdao.delete(cno);
+	}
 	
 }
