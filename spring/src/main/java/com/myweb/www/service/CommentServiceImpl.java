@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.myweb.www.domain.CommentVO;
+import com.myweb.www.domain.PagingVO;
+import com.myweb.www.handler.PagingHandler;
 import com.myweb.www.repository.CommentDAO;
 
 import lombok.RequiredArgsConstructor;
@@ -23,8 +25,11 @@ public class CommentServiceImpl implements CommentService{
 	}
 
 	@Override
-	public List<CommentVO> getList(long bno) {
-		return cdao.getList(bno);
+	public PagingHandler getList(long bno , PagingVO pgvo) {
+		List<CommentVO> list = cdao.getList(bno , pgvo);
+		int cmtCount = cdao.totalCount(bno);
+		PagingHandler ph = new PagingHandler(pgvo, cmtCount, list);
+		return ph;
 	}
 	
 }

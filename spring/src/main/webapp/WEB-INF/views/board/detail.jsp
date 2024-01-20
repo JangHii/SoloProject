@@ -62,6 +62,12 @@
 		</li>
 	</ul>
 	
+	<!-- 댓글 더보기 라인  -->
+	<div>
+		<button type="button" id="moreBtn" data-page="1"
+			    class="btn btn-outline-dark" style="visibility: hidden;">댓글 더보기</button>
+	</div>
+	
 	
 </div>
 <script src="/resources/js/boardComment.js"></script>

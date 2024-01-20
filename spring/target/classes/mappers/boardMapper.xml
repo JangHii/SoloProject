@@ -13,8 +13,15 @@
 		SELECT * FROM board
 		<include refid="search"></include>
 		ORDER BY bno DESC
-		LIMIT #{pageStart} , #{qty}
+		LIMIT #{startPage} , #{qty}
 	</select>
+	
+	<update id="getCmtCount">
+		UPDATE board b SET cmt_qty =(
+		SELECT COUNT(bno) 
+		FROM comment
+		WHERE bno = b.bno)
+	</update>
 	
 	<select id="totalCount" resultType="int">
 		SELECT COUNT(bno) FROM board

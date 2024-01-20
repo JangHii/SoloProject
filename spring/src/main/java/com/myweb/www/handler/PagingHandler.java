@@ -1,5 +1,8 @@
 package com.myweb.www.handler;
 
+import java.util.List;
+
+import com.myweb.www.domain.CommentVO;
 import com.myweb.www.domain.PagingVO;
 
 import lombok.Getter;
@@ -18,6 +21,8 @@ public class PagingHandler {
 	private int totalCount; //총게시글의 수 (매개변수로 전달)
 	private PagingVO pgvo; //매개변수로 전달
 	
+	private List<CommentVO> cmtList;
+	
 	// 생성자에서 모든 값들이 설정되어야함
 	public PagingHandler(PagingVO pgvo , int totalCount) {
 		this.pgvo = pgvo;
@@ -33,7 +38,7 @@ public class PagingHandler {
 		// 실제 마지막페이지
 		// 전체 글수 / 한페이지에 표시되는 게시글 수 => 올림
 		int realEndPage = (int)Math.ceil(totalCount / (double)pgvo.getQty());
-		
+
 		if(realEndPage < endPage) {
 			this.endPage = realEndPage;
 		}
@@ -41,4 +46,11 @@ public class PagingHandler {
 		this.prev = this.startPage > 1;
 		this.next = this.endPage < realEndPage;
 	}
+	
+	
+	public PagingHandler(PagingVO pgvo , int totalCount , List<CommentVO>cmtList) {
+		this(pgvo , totalCount);
+		this.cmtList = cmtList;
+	}
+	
 }

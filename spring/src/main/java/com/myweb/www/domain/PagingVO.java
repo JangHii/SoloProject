@@ -26,7 +26,7 @@ public class PagingVO {
 	}
 	
 	// 시작 번지 구하기
-	public int getPageStart() {
+	public int getStartPage() {
 		return (this.pageNo-1) * qty;
 	}
 	

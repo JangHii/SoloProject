@@ -26,6 +26,7 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public List<BoardVO> getList(PagingVO pgvo) {
+		bdao.getCmtCount();
 		return bdao.selectList(pgvo);
 	}
 	
