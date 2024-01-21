@@ -42,4 +42,7 @@ public class CommentServiceImpl implements CommentService{
 		return cdao.delete(cno);
 	}
 	
+	public int main2BranchFunc() {
+
+	}
 }
