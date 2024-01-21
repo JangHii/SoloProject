@@ -1,6 +1,9 @@
 package com.myweb.www.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -18,6 +21,9 @@ public class ServletConfiguration implements WebMvcConfigurer{
 		// resources 경로 설정 / 나중에 파일 업로드 경로 설정 추가
 		registry.addResourceHandler("/resources/**") // 들어오는 경로
 				.addResourceLocations("/resources/"); // 찾는 경로
+		
+		registry.addResourceHandler("/upload/**") // 들어오는 경로
+				.addResourceLocations("file:///파일을 저장할 폴더 경로\\"); // 찾는 경로
 	}
 
 	@Override
@@ -28,8 +34,13 @@ public class ServletConfiguration implements WebMvcConfigurer{
 		viewResolver.setPrefix("/WEB-INF/views/"); // jsp파일의 위치경로
 		viewResolver.setSuffix(".jsp"); // jsp확장자를 설정하여 표기하지않도록 한다
 		viewResolver.setViewClass(JstlView.class); // JSTL을 사용할수있도록 한다.
-		
 		registry.viewResolver(viewResolver);
+	}
+	
+	@Bean
+	public MultipartResolver getMultpartResolver() {
+		StandardServletMultipartResolver multipartResolver = new StandardServletMultipartResolver();
+		return multipartResolver;
 	}
 
 }

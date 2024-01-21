@@ -20,6 +20,5 @@ public interface CommentDAO {
 
 	int delete(long cno);
 	
-	void deleteAll(BoardVO bvo);
 
 }

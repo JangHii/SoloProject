@@ -1,7 +1,9 @@
 package com.myweb.www.config;
 
 import javax.servlet.Filter;
+import javax.servlet.MultipartConfigElement;
 import javax.servlet.Registration;
+import javax.servlet.ServletRegistration.Dynamic;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -37,13 +39,23 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 		return new Filter[] {encoding}; 
 	}
 
-//	@Override
-//	protected void customizeRegistration(Dynamic registration) {
-//		registration.setInitParameter("throwExceptionIfNoHandlerFound, "true");
-//		// 그외기타 사용자 설정
-//		// 사용자 지정 익셉션 처리 지정
-//		super.customizeRegistration(registration);
-//	}
+	@Override
+	protected void customizeRegistration(Dynamic registration) {
+		// 파일을 저장할 폴더 경로
+		String uploadLocation = "파일을 저장할 폴더 경로";
+		
+		// 업로드할수 있는 파일의 최대 크기 (20MB로 설정)
+		int maxFileSize = 1024 * 1024 * 20;
+		
+		// 업로드된 파일의 최대크기 (maxFileSize의 2배로 설정)
+		int maxReSize = maxFileSize * 2;
+		
+		// 파일이 메모리에 저장되기 전에 최대 크기를 결정하는 임계값 (maxFileSize)
+		int fileSizeThreshole = maxFileSize;
+		
+		MultipartConfigElement multipartConfig =
+				new MultipartConfigElement(uploadLocation , maxFileSize , maxReSize , fileSizeThreshole);
+	}
 
 	
 	
