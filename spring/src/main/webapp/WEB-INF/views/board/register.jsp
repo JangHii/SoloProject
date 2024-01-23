@@ -24,15 +24,30 @@
   <textarea class="form-control" name="content" id="content" rows="3" placeholder="내용을 작성해주세요..."></textarea>
 </div>
 
-
 <a href="/"><button type="button" class="btn btn-secondary">취소</button></a>
 <button type="submit" class="btn btn-secondary" id="regBtn">전송</button>
+
+<!-- file 입력 라인 추가 -->
+<div class="mb-3">
+	<input type="file" name="file" class="form-control" id="files" multiple="multiple" style="display: none"><br>
+	<!-- 파일 버튼 트리거 사용하기 위해서 주는 버튼 -->
+	<button type="button" class="btn btn-primary" id="trigger">파일 업로드</button>
+</div>
+
+<!-- file 목록 표시라인 -->
+<div class="mb-3" id="fileZone">
+
+</div>
+<a href="/"><button type="button" class="btn btn-danger">취소</button></a>
+<button type="submit" class="btn btn-primary" id="regBtn">등록</button>
+
+
 
 
 
 </form>
 </div>
 
-<br><br>
 
+<script src="resources/js/boardFile.js"></script>
 <jsp:include page="../layout/footer.jsp"></jsp:include>

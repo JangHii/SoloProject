@@ -79,7 +79,7 @@ public class FileHandler {
 				e.printStackTrace();
 				log.info("파일 생성 오류");
 			}
-			// list에 fvo 추가ㄴ
+			// list에 fvo 추가
 			flist.add(fvo);
 		}
 		

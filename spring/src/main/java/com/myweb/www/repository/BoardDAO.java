@@ -2,12 +2,13 @@ package com.myweb.www.repository;
 
 import java.util.List;
 
+import com.myweb.www.domain.BoardDTO;
 import com.myweb.www.domain.BoardVO;
 import com.myweb.www.domain.PagingVO;
 
 public interface BoardDAO {
 
-	void register(BoardVO bvo);
+	int register(BoardVO bvo);
 
 	List<BoardVO> selectList(PagingVO pgvo);
 
@@ -22,6 +23,8 @@ public interface BoardDAO {
 	int totalCount(PagingVO pgvo);
 
 	void getCmtCount();
+
+	long selectOneBno();
 
 
 

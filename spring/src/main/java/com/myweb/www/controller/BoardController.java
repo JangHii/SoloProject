@@ -8,9 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.myweb.www.domain.BoardDTO;
 import com.myweb.www.domain.BoardVO;
+import com.myweb.www.domain.FileVO;
 import com.myweb.www.domain.PagingVO;
+import com.myweb.www.handler.FileHandler;
 import com.myweb.www.handler.PagingHandler;
 import com.myweb.www.service.BoardService;
 
@@ -25,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardController {
 
 	private final BoardService bsv;
+	private final FileHandler fh;
 	
 	// 조회할때만 사용
 	// URL에 데이터가 노출됨
@@ -35,9 +40,12 @@ public class BoardController {
 	// 데이터를 저장할때 사용
 	// URL의 데이터가 노출되지않음
 	@PostMapping("/register")
-	public String register(BoardVO bvo) {
-		log.info(">>>>> bvo 들어온지 확인하자 >>>>> {} " , bvo);
-		bsv.register(bvo);
+	public String register(BoardVO bvo , @RequestParam(name="files" , required = false) MultipartFile[] files) {
+		List<FileVO> flist = null;
+		if(files[0].getSize() > 0) {
+			flist = fh.uploadFiles(files);
+		}
+		int isOk = bsv.register(new BoardDTO(bvo , flist));
 		return "index";
 	}
 	

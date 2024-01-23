@@ -3,10 +3,15 @@ package com.myweb.www.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.myweb.www.domain.BoardDTO;
 import com.myweb.www.domain.BoardVO;
+import com.myweb.www.domain.FileVO;
 import com.myweb.www.domain.PagingVO;
 import com.myweb.www.repository.BoardDAO;
+import com.myweb.www.repository.CommentDAO;
+import com.myweb.www.repository.FileDAO;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,11 +22,27 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardServiceImpl implements BoardService{
 
 	private final BoardDAO bdao;
+	private final CommentDAO cdao;
+	private final FileDAO fdao;
 
+	@Transactional
 	@Override
-	public void register(BoardVO bvo) {
-		log.info(" >>>>> bvo 들어오는지 확인하자 >>>>> {}" , bvo);
-		bdao.register(bvo);
+	public int register(BoardDTO bdto) {
+		int isOk = bdao.register(bdto.getBvo());
+		
+		if(bdto.getFlist() == null) {
+			return isOk;
+		}
+		
+		if(isOk > 0 && bdto.getFlist().size() > 0) {
+			long bno = bdao.selectOneBno();
+			
+			for(FileVO fvo : bdto.getFlist()) {
+				fvo.setBno(bno);
+				isOk += fdao.insertFile(fvo);
+			}
+		}
+		return isOk;
 	}
 
 	@Override
