@@ -28,15 +28,14 @@ public class BoardServiceImpl implements BoardService{
 	@Transactional
 	@Override
 	public int register(BoardDTO bdto) {
+		// TODO Auto-generated method stub
 		int isOk = bdao.register(bdto.getBvo());
 		
 		if(bdto.getFlist() == null) {
 			return isOk;
 		}
-		
 		if(isOk > 0 && bdto.getFlist().size() > 0) {
 			long bno = bdao.selectOneBno();
-			
 			for(FileVO fvo : bdto.getFlist()) {
 				fvo.setBno(bno);
 				isOk += fdao.insertFile(fvo);
@@ -48,32 +47,55 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public List<BoardVO> getList(PagingVO pgvo) {
 		bdao.getCmtCount();
-		return bdao.selectList(pgvo);
+		return bdao.getList(pgvo);
+	}
+
+	@Transactional
+	@Override
+	public BoardDTO getDetail(long bno) {
+		bdao.upReadCount(bno, 1);
+		BoardVO bvo = bdao.getDetail(bno);
+		List<FileVO> flist = fdao.getFileList(bno);
+		BoardDTO bdto = new BoardDTO(bvo, flist);
+		return bdto;
 	}
 	
+	@Transactional
 	@Override
-	public int gettotalCount(PagingVO pgvo) {
+	public int modify(BoardDTO bdto) {
+		int isOk = bdao.upReadCount(bdto.getBvo().getBno(), -2);
+		
+		if(bdto.getFlist() == null) {
+			return isOk;
+		}
+		
+		if(isOk > 0 && bdto.getFlist().size() > 0) {
+			for(FileVO fvo : bdto.getFlist()) {
+				fvo.setBno(bdto.getBvo().getBno());
+				isOk += fdao.insertFile(fvo);
+			}
+		}
+		return isOk;
+		
+	}
+
+	@Override
+	public void remove(BoardVO bvo) {
+		cdao.deleteAll(bvo);
+		fdao.deleteAll(bvo);
+		bdao.delete(bvo);	
+	}
+
+	@Override
+	public int totalCount(PagingVO pgvo) {
+		// TODO Auto-generated method stub
 		return bdao.totalCount(pgvo);
 	}
 
 	@Override
-	public BoardVO getdetail(int bno) {
-		log.info(" >>>>> bno 들어오는지 확인하자 >>>>> {}" , bno);
-		bdao.updateCount(bno);
-		return bdao.detail(bno);
-	}
-
-	@Override
-	public void modify(BoardVO bvo) {
-		log.info(" >>>>> bvo 들어오는지 확인하자 >>>>> {}" , bvo);
-		bdao.modify(bvo);
-	}
-
-	@Override
-	public int delete(int bno) {
-		log.info(" >>>>> bno 들어오는지 확인하자 >>>>> {}" , bno);
-		int isOk = bdao.delete(bno);
-		return isOk;
+	public int removeFile(String uuid) {
+		// TODO Auto-generated method stub
+		return fdao.deleteFile(uuid);
 	}
 
 

@@ -37,9 +37,21 @@
 </div>
 
 
+<!-- 파일 등록 라인 -->
+<div class="mb-3">
+  <input type="file" name="files" class="form-control" id="files" multiple="multiple" style="display:none;"> 
+  
+  <!-- 파일 버튼 트리거 사용하기 위해서 주는 버튼 -->
+  <button type="button" class="btn btn-secondary" id="trigger">파일업로드</button>
+</div>
+
+<!-- 파일 목록 표시라인 -->
+<div class="mb-3" id="fileZone"></div>	
+
+
 <a href="/board/list"><button type="button" class="btn btn-primary">리스트</button></a>
 <button type="submit" class="btn btn-secondary">수정완료</button>
-<a href="/board/delete?bno=${bvo.bno }"><button type="button" class="btn btn-primary">삭제하기</button></a> 
+<a href="/board/remove?bno=${bvo.bno }"><button type="button" class="btn btn-primary">삭제하기</button></a> 
 
 
 

@@ -37,6 +37,41 @@
 		<textarea class="form-control" name="content" id="content" rows="3">${bvo.content }</textarea>
 	</div>
 	
+	<!-- 파일 표시 라인 -->
+	<c:set value="${bdto.flist}" var="flist"></c:set>
+		<div class="mb-3">
+			<label for="f" class="form-label">File</label>
+				<ul class="list-group list-group-flush">
+					<c:forEach items="${flist}" var="fvo">
+  						<li class="list-group-item">
+  						
+  							<c:choose>
+  								<c:when test="${fvo.fileType == 1}">
+  									<img alt="" src="/upload/${fvo.saveDir}/${fvo.uuid}_th_${fvo.fileName}">
+  								</c:when>
+  								
+  								<c:otherwise>
+  									<div>
+  										<!-- 일반 파일 표시할 아이콘 -->
+  										<a href="/upload/${fvo.saveDir}/${fvo.uuid }_${fvo.fileName}">
+  											<i class="bi bi-file-earmark-arrow-down"></i>
+										</a>
+  									</div>
+  								</c:otherwise>
+  							</c:choose>
+  							
+  							<div class="ms-2 me-auto">
+  								<div class="fw-bold">${fvo.fileName }</div>
+  								<span class="badge text-bg-secondary">${fvo.fileSize } </span>
+  							</div>
+  						</li>
+  					</c:forEach>
+				</ul>
+		</div>
+	
+	
+	
+	
 	<div class="position-relative">
 	<div class="position-absolute bottom-0 end-0">
 		<a href="/board/modify?bno=${bvo.bno }"><button type="button" class="btn btn-primary">게시글수정</button></a> 
