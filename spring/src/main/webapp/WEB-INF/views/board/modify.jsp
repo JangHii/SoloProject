@@ -9,7 +9,7 @@
 <div class="container-md">
 <h2>수정페이지</h2>
 <br>
-
+<c:set value="${bdto.bvo }" var="bvo"></c:set>
 
 <div class="mb-3">
   <label for="bno" class="form-label">번호</label>
@@ -58,5 +58,6 @@
 </div>
 </form>
 
+<script src="/resources/js/boardFile.js"></script>
 
 <jsp:include page="../layout/footer.jsp"></jsp:include>

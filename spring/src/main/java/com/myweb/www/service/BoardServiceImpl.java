@@ -28,7 +28,6 @@ public class BoardServiceImpl implements BoardService{
 	@Transactional
 	@Override
 	public int register(BoardDTO bdto) {
-		// TODO Auto-generated method stub
 		int isOk = bdao.register(bdto.getBvo());
 		
 		if(bdto.getFlist() == null) {
@@ -88,13 +87,11 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public int totalCount(PagingVO pgvo) {
-		// TODO Auto-generated method stub
 		return bdao.totalCount(pgvo);
 	}
 
 	@Override
 	public int removeFile(String uuid) {
-		// TODO Auto-generated method stub
 		return fdao.deleteFile(uuid);
 	}
 

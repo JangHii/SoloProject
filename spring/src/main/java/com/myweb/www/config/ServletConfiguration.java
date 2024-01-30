@@ -23,7 +23,7 @@ public class ServletConfiguration implements WebMvcConfigurer{
 				.addResourceLocations("/resources/"); // 찾는 경로
 		
 		registry.addResourceHandler("/upload/**") // 들어오는 경로
-				.addResourceLocations("file:///파일을 저장할 폴더 경로\\"); // 찾는 경로
+				.addResourceLocations("file:///D:\\_myProject\\_java\\_fileUpload\\"); // 찾는 경로
 	}
 
 	@Override

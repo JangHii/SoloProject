@@ -2,6 +2,9 @@ package com.myweb.www.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -92,14 +95,13 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-	@ResponseBody
-	@DeleteMapping("/{uuid}")
-	public String delete(@PathVariable("uuid") String uuid) {
-		log.info(">>>>> uuid >>>>> {}" , uuid);
-		
+	@DeleteMapping(value="/file/{uuid}", produces= MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<String> removeFile(@PathVariable("uuid") String uuid) {
 		int isOk = bsv.removeFile(uuid);
-		
-		return isOk > 0 ? "1" : "0" ;
+		return isOk > 0 ?
+				new ResponseEntity<String>("1", HttpStatus.OK) :
+					new ResponseEntity<String>("0", HttpStatus.INTERNAL_SERVER_ERROR);
+				
 	}
 	
 }

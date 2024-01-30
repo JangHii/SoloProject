@@ -42,7 +42,7 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 	@Override
 	protected void customizeRegistration(Dynamic registration) {
 		// 파일을 저장할 폴더 경로
-		String uploadLocation = "파일을 저장할 폴더 경로";
+		String uploadLocation = "D:\\_myProject\\_java\\_fileUpload";
 		
 		// 업로드할수 있는 파일의 최대 크기 (20MB로 설정)
 		int maxFileSize = 1024 * 1024 * 20;

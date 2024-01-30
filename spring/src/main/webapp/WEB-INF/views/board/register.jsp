@@ -7,7 +7,7 @@
 <br><br>
 <h2>글쓰기페이지</h2>
 <br>
-<form action="/board/register" method="post">
+<form action="/board/register" method="post" enctype="multipart/form-data">
 
 <div class="mb-3">
   <label for="title" class="form-label">제목</label>
@@ -23,9 +23,6 @@
   <label for="content" class="form-label">내용</label>
   <textarea class="form-control" name="content" id="content" rows="3" placeholder="내용을 작성해주세요..."></textarea>
 </div>
-
-<a href="/"><button type="button" class="btn btn-secondary">취소</button></a>
-<button type="submit" class="btn btn-secondary" id="regBtn">전송</button>
 
 <!-- file 입력 라인 추가 -->
 <div class="mb-3">
@@ -49,5 +46,6 @@
 </div>
 
 
-<script src="resources/js/boardFile.js"></script>
+<script src="/resources/js/boardFile.js"></script>
+
 <jsp:include page="../layout/footer.jsp"></jsp:include>
