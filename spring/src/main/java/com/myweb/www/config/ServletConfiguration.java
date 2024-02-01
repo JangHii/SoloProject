@@ -37,7 +37,7 @@ public class ServletConfiguration implements WebMvcConfigurer{
 		registry.viewResolver(viewResolver);
 	}
 	
-	@Bean
+	@Bean(name ="multipartResolver")
 	public MultipartResolver getMultpartResolver() {
 		StandardServletMultipartResolver multipartResolver = new StandardServletMultipartResolver();
 		return multipartResolver;

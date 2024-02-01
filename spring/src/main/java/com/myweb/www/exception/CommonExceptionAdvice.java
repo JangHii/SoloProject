@@ -24,5 +24,4 @@ public class CommonExceptionAdvice {
 		log.info(">>>>> 404 exception >>>>> " + ex.getMessage());
 		return "coutom404";
 	}
-	
 }

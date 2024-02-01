@@ -1,6 +1,4 @@
-package com.myweb.www.domain;
-
-import java.util.List;
+package com.myweb.www.security;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,14 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Setter
 @Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class BoardDTO {
 
-	private BoardVO bvo;
-	private List<FileVO> flist;
-	
+public class AuthVO {
+	private String email;
+	private String auth;
 }

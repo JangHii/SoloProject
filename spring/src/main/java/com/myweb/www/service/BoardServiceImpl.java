@@ -62,6 +62,8 @@ public class BoardServiceImpl implements BoardService{
 	@Transactional
 	@Override
 	public int modify(BoardDTO bdto) {
+		bdao.update(bdto.getBvo());
+		
 		int isOk = bdao.upReadCount(bdto.getBvo().getBno(), -2);
 		
 		if(bdto.getFlist() == null) {

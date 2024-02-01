@@ -5,7 +5,7 @@
 <jsp:include page="../layout/header.jsp"></jsp:include>
 
 
-<form action="/board/modify" method="post">
+<form action="/board/modify" method="post" enctype="multipart/form-data">
 <div class="container-md">
 <h2>수정페이지</h2>
 <br>

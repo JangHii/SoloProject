@@ -13,7 +13,7 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 	@Override
 	// 루트 설정 클래스를 반환하는 메서드로, 애플리케이션 전반의 설정을 담당
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] {RootConfig.class};
+		return new Class[] {RootConfig.class , SecurityConfig.class};
 	}
 
 	@Override
@@ -55,7 +55,11 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 		
 		MultipartConfigElement multipartConfig =
 				new MultipartConfigElement(uploadLocation , maxFileSize , maxReSize , fileSizeThreshole);
+		
+		registration.setMultipartConfig(multipartConfig);
 	}
+	
+	
 
 	
 	
